@@ -18,6 +18,21 @@ function App() {
     }
   }
 
+  const decimal = (e)=>{
+    
+    if(num === 0){
+      setNum('0.')
+    }else{
+      let ans = num.includes('.')
+
+      if (ans === false){
+        setNum(num + e.target.innerText) 
+      }else{
+        return
+      }
+    }
+  }
+
 
   const handleOperator = (e)=>{
     setOperator(e.target.innerText)
@@ -27,10 +42,28 @@ function App() {
 
   const calculate = ()=>{
     if (operator === "+"){
-      setNum(parseInt(num)+parseInt(num1))
+      setNum(parseFloat(num)+parseFloat(num1))
+    }else if(operator === "-"){
+      setNum(parseFloat(num1)-parseFloat(num))
+    }else if(operator === "*"){
+      setNum(parseFloat(num1)*parseFloat(num))
+    }else if(operator === "/"){
+      setNum(parseFloat(num1)/parseFloat(num))
     }
   }
  
+
+  const clear = ()=>{
+    setNum(0)
+  }
+
+  const percentage = ()=>{
+    if(num === 0){
+      return
+    }else{
+      setNum(parseFloat(num)/100)
+    }
+  }
 
 
   return (
@@ -44,9 +77,9 @@ function App() {
             <tbody>
 
               <tr>
-                <td><button id='ac' className='btn special'>AC</button></td>
+                <td><button id='ac' className='btn special' onClick={clear}>AC</button></td>
                 <td><button id='sign' className='btn special'>+/-</button></td>
-                <td><button id='percentage' className='btn special'>%</button></td>
+                <td><button id='percentage' className='btn special' onClick={percentage}>%</button></td>
                 <td><button id='division' className='btn operator' onClick={handleOperator}>/</button></td>
               </tr>
 
@@ -74,7 +107,7 @@ function App() {
 
               <tr>
                 <td colSpan="2"><button id='zero' className='btn number' onClick= {handleNum}><p>0</p></button></td>
-                <td><button id='point' className='btn decimal'>.</button></td>
+                <td><button id='point' className='btn decimal' onClick={decimal}>.</button></td>
                 <td><button id='equal' className='btn operator' onClick={calculate}>=</button></td>
 
               </tr>
