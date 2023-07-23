@@ -66,6 +66,11 @@ function App() {
   }
 
 
+  const negative = ()=>[
+    setNum(parseFloat(num)*-1)
+  ]
+
+
   return (
     <>
       <section>
@@ -78,7 +83,7 @@ function App() {
 
               <tr>
                 <td><button id='ac' className='btn special' onClick={clear}>AC</button></td>
-                <td><button id='sign' className='btn special'>+/-</button></td>
+                <td><button id='sign' className='btn special' onClick={negative}>+/-</button></td>
                 <td><button id='percentage' className='btn special' onClick={percentage}>%</button></td>
                 <td><button id='division' className='btn operator' onClick={handleOperator}>/</button></td>
               </tr>
